@@ -1,26 +1,20 @@
 "use client";
 
 import { getToken } from "@/lib/auth";
-import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
-
-interface JwtPayload {
-  sub: number;
-  username: string;
-  role: string;
-  exp: number;
-  iat: number;
-}
 
 export default function DashboardHome() {
   const router = useRouter();
   const token = getToken();
-  let username = "USER";
 
+  // Extract username from JWT manually
+  let username = "USER";
   if (token) {
     try {
-      const decoded = jwtDecode<JwtPayload>(token);
-      if (decoded.username) username = decoded.username.toUpperCase();
+      const payloadBase64 = token.split('.')[1]; // get the payload
+      const payloadJson = atob(payloadBase64);  // decode from base64
+      const payload = JSON.parse(payloadJson); // parse JSON
+      if (payload.username) username = payload.username.toUpperCase();
     } catch {
       username = "INVALID TOKEN";
     }
