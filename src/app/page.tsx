@@ -1,155 +1,104 @@
 "use client";
-import Image from "next/image";
+
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/login";
+  const handleStart = () => {
+    router.push("/about");
   };
 
   return (
     <div
       style={{
-        position: "relative",
         minHeight: "100vh",
-        width: "100%",
-        overflow: "hidden",
-        color: "white",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#ffffff",
         fontFamily: "Arial, sans-serif",
+        overflow: "hidden",
       }}
     >
+      {/* Animations */}
+      <style>{`
+        @keyframes fadeInScale {
+          0% {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
 
-      {/* Navigation Menu */}
-      <nav
-        style={{
-          position: "fixed",
-          top: 20,
-          right: 30,
-          display: "flex",
-          gap: "1rem",
-          zIndex: 10,
-        }}
-      >
-        {["About", "Education", "Hobbies", "Contact"].map((item) => (
-          <a
-            key={item}
-            href={`/${item.toLowerCase()}`}
-            style={{
-              color: "white",
-              textDecoration: "none",
-              fontWeight: "700",
-              padding: "10px 18px",
-              borderRadius: "12px",
-              border: "2px solid rgba(255,255,255,0.7)",
-              backdropFilter: "blur(5px)",
-              transition: "all 0.3s ease",
-              backgroundColor: "rgba(0,0,0,0.35)",
-            }}
-          >
-            {item}
-          </a>
-        ))}
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
+        }
 
-        {/* 🔥 Logout Button */}
-        <button
-          onClick={handleLogout}
-          style={{
-            color: "white",
-            fontWeight: "700",
-            padding: "10px 18px",
-            borderRadius: "12px",
-            border: "2px solid rgba(255,255,255,0.7)",
-            backgroundColor: "rgba(255,0,0,0.45)",
-            backdropFilter: "blur(5px)",
-            cursor: "pointer",
-            transition: "0.3s",
-          }}
-        >
-          Logout
-        </button>
-      </nav>
+        .card {
+          animation: fadeInScale 1s ease-out forwards,
+                     float 4s ease-in-out infinite;
+        }
 
-{/* Background Image */}
-      <Image
-        src="/qqq.jpg"
-        alt="Background"
-        fill
-        style={{ objectFit: "cover" }}
-        quality={80}
-        priority
-      />
+        .start-btn:hover {
+          transform: scale(1.08);
+        }
+      `}</style>
 
-
-      {/* Content Container */}
+      {/* Card */}
       <div
+        className="card"
         style={{
-          position: "relative",
-          zIndex: 1,
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-          padding: "2rem",
-          gap: "3rem",
-          backgroundColor: "rgba(0, 0, 0, 0.45)",
+          backgroundColor: "#e9b3f3",
+          padding: "4rem",
+          borderRadius: "30px",
+          textAlign: "center",
+          width: "80%",
+          maxWidth: "900px",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
         }}
       >
-        {/* Profile Picture */}
-        <div
+        <p style={{ letterSpacing: "3px", fontSize: "0.9rem" }}>
+          WELCOME TO MY
+        </p>
+
+        <h1
           style={{
-            borderRadius: "50%",
-            overflow: "hidden",
-            width: "450px",
-            height: "450px",
-            boxShadow: "0 0 20px rgba(255, 255, 255, 0.4)",
-            flexShrink: 0,
+            fontSize: "3rem",
+            fontWeight: "900",
+            margin: "1rem 0",
           }}
         >
-          <Image src="/1.webp" alt="Jerome Riva" width={450} height={450} />
-        </div>
+          VALENTINE&apos;S <br /> INVITATION
+        </h1>
 
-        {/* Text Section */}
-        <div style={{ maxWidth: "600px", textAlign: "left" }}>
-          <h1 style={{ fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem" }}>
-            Mr. Jerome Riva
-          </h1>
-          <p style={{ fontSize: "1.25rem", marginBottom: "2rem" }}>
-            Hi! I’m Jerome E. Riva, a BSIT student from Naga College Foundation, Inc. 
-            Welcome to my personal page!
-          </p>
+        <p style={{ marginBottom: "2.5rem", fontSize: "1rem" }}>
+          MADE BY YOUR LABLAB JEROME
+        </p>
 
-          <div style={{ display: "flex", gap: "1.5rem", fontSize: "1.1rem" }}>
-            <a
-              href="https://web.facebook.com/Jerome.Riva.009"
-              target="_blank"
-              style={{
-                color: "#0A66C2",
-                textDecoration: "none",
-                padding: "8px 16px",
-                borderRadius: "8px",
-                border: "2px solid #0A66C2",
-                backdropFilter: "blur(3px)",
-              }}
-            >
-              Facebook
-            </a>
-            <a
-              href="mailto:rivajerome00@gmail.com"
-              style={{
-                color: "#ff4c4c",
-                textDecoration: "none",
-                padding: "8px 16px",
-                borderRadius: "8px",
-                border: "2px solid #ff4c4c",
-                backdropFilter: "blur(3px)",
-              }}
-            >
-              Email
-            </a>
-          </div>
-        </div>
+        {/* Start Button */}
+        <button
+          onClick={handleStart}
+          className="start-btn"
+          style={{
+            backgroundColor: "#d1007d",
+            color: "black",
+            fontSize: "1.2rem",
+            padding: "14px 50px",
+            borderRadius: "40px",
+            border: "none",
+            cursor: "pointer",
+            fontWeight: "bold",
+            transition: "0.3s ease",
+          }}
+        >
+          Start 💖
+        </button>
       </div>
     </div>
   );

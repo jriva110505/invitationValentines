@@ -1,239 +1,167 @@
-import Image from "next/image";
+"use client";
 
-export default function Hobbies() {
+export default function Contact() {
   return (
     <div
       style={{
-        position: "relative",
+        backgroundColor: "#e6b3f7",
         minHeight: "100vh",
-        width: "100%",
-        overflow: "hidden",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: "2rem",
+        fontFamily: "'Times New Roman', serif",
+        overflow: "hidden",
+        position: "relative",
       }}
     >
-      {/* Background Image */}
-      <Image
-        src="/qqq.jpg"
-        alt="Background"
-        fill
-        style={{ objectFit: "cover" }}
-        priority
-      />
+      {/* HEART & ROSE FIREWORKS */}
+      <style>{`
+        @keyframes explode {
+          0% {
+            transform: scale(0) translateY(0);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(2.5) translateY(-120px);
+            opacity: 0;
+          }
+        }
 
-      {/* Dark overlay */}
+        .firework {
+          position: absolute;
+          font-size: 2.5rem;
+          animation: explode 2.5s ease-out infinite;
+          pointer-events: none;
+        }
+
+        .fw1 { top: 20%; left: 25%; animation-delay: 0s; }
+        .fw2 { top: 40%; left: 70%; animation-delay: 0.6s; }
+        .fw3 { top: 65%; left: 30%; animation-delay: 1.2s; }
+        .fw4 { top: 30%; left: 55%; animation-delay: 1.8s; }
+        .fw5 { top: 75%; left: 75%; animation-delay: 2.4s; }
+
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+          100% { transform: translateY(0px); }
+        }
+
+        .float {
+          animation: float 3s ease-in-out infinite;
+        }
+
+        .float-slow {
+          animation: float 5s ease-in-out infinite;
+        }
+
+        .link {
+          color: #7a003c;
+          font-weight: bold;
+          text-decoration: none;
+        }
+
+        .link:hover {
+          text-decoration: underline;
+        }
+      `}</style>
+
+      {/* FIREWORK EMOJIS */}
+      <div className="firework fw1">❤️</div>
+      <div className="firework fw2">🌹</div>
+      <div className="firework fw3">💖</div>
+      <div className="firework fw4">🌹</div>
+      <div className="firework fw5">❤️</div>
+
+      {/* CONTENT CARD */}
       <div
+        className="float"
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.6)",
-          zIndex: 1,
-        }}
-      />
-
-      {/* Back Button */}
-      <a
-        href="/"
-        style={{
-          position: "absolute",
-          top: "20px",
-          right: "20px",
-          color: "white",
-          fontSize: "1.05rem",
-          textDecoration: "none",
-          fontWeight: "700",
-          zIndex: 10,
-          padding: "8px 14px",
-          border: "2px solid rgba(255,255,255,0.9)",
-          borderRadius: "6px",
-          backdropFilter: "blur(3px)",
-        }}
-      >
-        ← Back
-      </a>
-
-      {/* Main Content */}
-      <section
-        id="hobbies"
-        style={{
+          backgroundColor: "rgba(230,179,247,0.9)",
+          padding: "3rem",
+          borderRadius: "20px",
+          textAlign: "center",
+          maxWidth: "900px",
           position: "relative",
           zIndex: 2,
-          width: "100%",
-          maxWidth: "900px",
-          color: "white",
+          boxShadow: "0 15px 35px rgba(0,0,0,0.2)",
         }}
       >
-        <h2
+        {/* TITLE */}
+        <h1
           style={{
-            fontSize: "2.5rem",
+            fontSize: "5rem",
+            color: "#7a003c",
+            letterSpacing: "4px",
             marginBottom: "2rem",
-            textAlign: "center",
-            fontWeight: "800",
-            color: "white", // changed to plain white
           }}
         >
-          My Hobbies
-        </h2>
+          YEEHHHEEYYY!!!
+        </h1>
 
-        {/* Hobby Card - Cycling */}
+        {/* CONTENT */}
         <div
           style={{
-            position: "relative",
-            padding: "1.5rem",
-            borderRadius: "14px",
-            marginBottom: "1.5rem",
-            borderLeft: "8px solid #ff4fd8",
             display: "flex",
             alignItems: "center",
-            gap: "1.5rem",
-            overflow: "hidden",
-            backdropFilter: "blur(8px)",
-            backgroundColor: "rgba(255,255,255,0.08)",
-            boxShadow: "0 0 20px rgba(255,79,216,0.3)",
-            zIndex: 2,
+            justifyContent: "space-between",
+            gap: "2rem",
           }}
         >
-          {/* Card background image */}
-          <div
+          {/* LEFT IMAGE */}
+          <img
+            src="/smiledog.jpg"
+            alt="dog"
+            className="float-slow"
             style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: "url('/bbike.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: 0.28,
-              zIndex: 0,
+              width: "180px",
+              borderRadius: "10px",
             }}
           />
 
-          {/* Round icon */}
+          {/* INFO */}
           <div
+            className="float"
             style={{
-              width: "100px",
-              height: "100px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              flexShrink: 0,
-              border: "3px solid #ff4fd8",
-              zIndex: 3,
+              fontSize: "1.1rem",
+              color: "black",
+              lineHeight: "2",
+              letterSpacing: "1px",
             }}
           >
-            <Image src="/bike.jpg" alt="Cycling" width={100} height={100} />
+            <p>DATE: FEB 14 </p>
+
+            <p>
+              PLACE:{" "}
+              <a
+                href="https://www.google.com/maps/search/Don+Rodolfos+Cafe"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link"
+              >
+                DONRODOLFOS CAFE
+              </a>
+            </p>
+
+            <p>DRESSCODE: RED OR BLACK</p>
+            <p>TIME TO PICK UP: 10AM</p>
+
+            <br />
+
+            <strong>SEE YOU THAT DAY LOVIEEE! 💕</strong>
           </div>
 
-          <div style={{ zIndex: 3 }}>
-            <h3 style={{ fontSize: "1.7rem", marginBottom: "0.3rem" }}>Cycling</h3>
-            <p style={{ opacity: 0.95 }}>I love biking around and exploring new places.</p>
-          </div>
-        </div>
-
-        {/* Hobby Card - Photography */}
-        <div
-          style={{
-            position: "relative",
-            padding: "1.5rem",
-            borderRadius: "14px",
-            marginBottom: "1.5rem",
-            borderLeft: "8px solid #ffd700",
-            display: "flex",
-            alignItems: "center",
-            gap: "1.5rem",
-            overflow: "hidden",
-            backdropFilter: "blur(8px)",
-            backgroundColor: "rgba(255,255,255,0.08)",
-            boxShadow: "0 0 20px rgba(255,215,0,0.3)",
-            zIndex: 2,
-          }}
-        >
-          <div
+          {/* RIGHT IMAGE */}
+          <img
+            src="/smilecat.jpg"
+            alt="cat"
+            className="float-slow"
             style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: "url('/pics.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: 0.28,
-              zIndex: 0,
+              width: "180px",
+              borderRadius: "10px",
             }}
           />
-
-          <div
-            style={{
-              width: "100px",
-              height: "100px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              flexShrink: 0,
-              border: "3px solid #ffd700",
-              zIndex: 3,
-            }}
-          >
-            <Image src="/pic.jpg" alt="Photography" width={100} height={100} />
-          </div>
-
-          <div style={{ zIndex: 3 }}>
-            <h3 style={{ fontSize: "1.7rem", marginBottom: "0.3rem" }}>Photography</h3>
-            <p style={{ opacity: 0.95 }}>Capturing moments is one of my passions.</p>
-          </div>
         </div>
-
-        {/* Hobby Card - Music */}
-        <div
-          style={{
-            position: "relative",
-            padding: "1.5rem",
-            borderRadius: "14px",
-            marginBottom: "1.5rem",
-            borderLeft: "8px solid #00e1ff",
-            display: "flex",
-            alignItems: "center",
-            gap: "1.5rem",
-            overflow: "hidden",
-            backdropFilter: "blur(8px)",
-            backgroundColor: "rgba(255,255,255,0.08)",
-            boxShadow: "0 0 20px rgba(0,225,255,0.3)",
-            zIndex: 2,
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: "url('/music.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: 0.28,
-              zIndex: 0,
-            }}
-          />
-
-          <div
-            style={{
-              width: "100px",
-              height: "100px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              flexShrink: 0,
-              border: "3px solid #00e1ff",
-              zIndex: 3,
-            }}
-          >
-            <Image src="/catsing.jpg" alt="Music" width={200} height={200} />
-          </div>
-
-          <div style={{ zIndex: 3 }}>
-            <h3 style={{ fontSize: "1.7rem", marginBottom: "0.3rem" }}>
-              Listening to Music
-            </h3>
-            <p style={{ opacity: 0.95 }}>Music keeps me inspired and energized.</p>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }

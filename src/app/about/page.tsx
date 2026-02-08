@@ -1,171 +1,133 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function About() {
+  const router = useRouter();
+
+  const handleNext = () => {
+    router.push("/contact");
+  };
+
   return (
-    <div style={{ width: "100%", position: "relative" }}>
-      {/* Top Half Background */}
-      <div
-        style={{
-          position: "relative",
-          height: "50vh",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-          color: "white",
-          overflow: "hidden",
-        }}
-      >
-        <Image
-          src="/as.jpg"
-          alt="Top Background"
-          fill
-          style={{ objectFit: "cover" }}
-          priority
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            zIndex: 1,
-          }}
-        />
+    <div
+      style={{
+        backgroundColor: "#d4a3f9",
+        height: "100vh",
+        padding: "2rem",
+        boxSizing: "border-box",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: "Arial, sans-serif",
+        overflow: "hidden",
+      }}
+    >
+      {/* Animations */}
+      <style>{`
+        @keyframes fadeUp {
+          0% {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-        {/* About Me Content */}
-        <div style={{ position: "relative", zIndex: 2 }}>
-          <h2 style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "1.5rem", color: "white" }}>
-            About Me
-          </h2>
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-12px); }
+          100% { transform: translateY(0px); }
+        }
 
-          {/* Two Images */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "2rem" }}>
-            {/* Personal Photo */}
-            <div style={{ width: "200px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  boxShadow: "0 0 15px rgba(255,255,255,0.4)",
-                }}
-              >
-                <Image src="/1.jpg" alt="Your Photo" width={200} height={200} />
-              </div>
-              <p style={{ marginTop: "0.5rem", fontWeight: "bold" }}>Jerome Riva</p>
-            </div>
+        .fade-up {
+          animation: fadeUp 1s ease forwards;
+        }
 
-            {/* NCF Logo */}
-            <div style={{ width: "200px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  boxShadow: "0 0 15px rgba(0,243,65,0.4)",
-                }}
-              >
-                <Image src="/ncf.webp" alt="NCF Logo" width={200} height={200} />
-              </div>
-              <p style={{ marginTop: "0.5rem", fontWeight: "bold" }}>NCF - Present</p>
-            </div>
-          </div>
-        </div>
-      </div>
+        .float {
+          animation: float 4s ease-in-out infinite;
+        }
+      `}</style>
 
-      {/* Back Button */}
-      <a
-        href="/"
+      {/* Next Button */}
+      <button
+        onClick={handleNext}
         style={{
           position: "fixed",
           top: "20px",
           right: "20px",
-          color: "white",
-          fontSize: "1.1rem",
-          textDecoration: "none",
+          backgroundColor: "#d1007d",
+          borderRadius: "30px",
+          border: "none",
+          padding: "12px 28px",
           fontWeight: "bold",
-          zIndex: 20,
-          padding: "8px 14px",
-          border: "2px solid white",
-          borderRadius: "6px",
-          backdropFilter: "blur(3px)",
-          backgroundColor: "rgba(0,0,0,0.4)",
+          fontSize: "1.2rem",
+          color: "black",
+          cursor: "pointer",
+          zIndex: 10,
         }}
       >
-        ← Back
-      </a>
+        Next
+      </button>
 
-      {/* Bottom Half */}
+      {/* BIG IMAGE */}
       <div
+        className="fade-up float"
         style={{
-          position: "relative",
-          width: "100%",
-          padding: "4rem 2rem",
-          color: "white",
+          width: "280px",
+          height: "280px",
+          marginBottom: "2rem",
+          borderRadius: "20px",
+          overflow: "hidden",
+          boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
         }}
       >
-        <div
+        <Image
+          src="/1.webp"
+          alt="Jerome Riva"
+          width={500}
+          height={500}
+          style={{ objectFit: "cover", width: "100%", height: "100%" }}
+        />
+      </div>
+
+      {/* Text Box */}
+      <div
+        className="fade-up"
+        style={{
+          border: "2px solid #6a5acd",
+          padding: "1.8rem 2.2rem",
+          maxWidth: "750px",
+          color: "black",
+          fontSize: "1.15rem",
+          lineHeight: "1.7",
+          textAlign: "left",
+          backgroundColor: "rgba(255,255,255,0.15)",
+          borderRadius: "15px",
+          animationDelay: "0.3s",
+        }}
+      >
+        <p
           style={{
-            maxWidth: "900px",
-            margin: "0 auto",
-            borderRadius: "20px",
+            fontWeight: "bold",
             textAlign: "center",
-            backgroundColor: "rgba(32, 29, 29, 0.7)",
-            padding: "2rem",
-            backdropFilter: "blur(6px)",
+            marginBottom: "1.2rem",
+            fontSize: "1.3rem",
           }}
         >
-          {/* About Text */}
-          <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-            I am a dedicated Bachelor of Science in Information Technology student at Naga College Foundation (NCF),
-            committed to developing strong technical and analytical skills in the field of computing. My academic journey
-            has allowed me to explore core areas such as programming, web development, and system operations—strengthening my 
-            ability to approach challenges with logic, creativity, and precision.
-          </p>
+          BUT BEFORE WE START LET ME INTRODUCE MYSELF
+        </p>
 
-          <p style={{ fontSize: "1.2rem", marginBottom: "2rem" }}>
-            Beyond my coursework, I actively participate in school activities and events that promote leadership, teamwork,
-            and personal growth. I aim to continue building my technical expertise while contributing positively to every project and team I am part of.
-          </p>
-
-          {/* Achievements */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: "1rem",
-              flexWrap: "wrap",
-              marginTop: "3rem",
-            }}
-          >
-            {[ 
-              { src: "/ach1.jpg", title: "Best Coding Project", year: "2023" },
-              { src: "/ach2.jpg", title: "Web Development Award", year: "2022" },
-              { src: "/ach3.jpg", title: "IT Excellence", year: "2021" },
-            ].map((ach, i) => (
-              <div key={i} style={{ textAlign: "center", flex: "1 1 30%" }}>
-                <div style={{ width: "100%", height: "150px", overflow: "hidden", borderRadius: "10px" }}>
-                  <Image
-                    src={ach.src}
-                    alt={ach.title}
-                    width={500}
-                    height={150}
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <h3 style={{ marginTop: "0.5rem", fontSize: "1.1rem" }}>{ach.title}</h3>
-                <p style={{ fontSize: "0.9rem", opacity: 0.8 }}>{ach.year}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <p>
+          Hi love, my name is Jerome Riva. I am an IT student studying at Naga
+          College. I am a handsome, tall, and dark in-love person named{" "}
+          <strong>Xiena Nicole Nacora.</strong>
+        </p>
       </div>
     </div>
   );

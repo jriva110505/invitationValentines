@@ -1,202 +1,114 @@
-import Image from "next/image";
+"use client";
 
-export default function Education() {
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+export default function Contact() {
+  const router = useRouter();
+  const [noCount, setNoCount] = useState(0);
+
+  const handleYesClick = () => {
+    router.push("/hobbies");
+  };
+
+  const handleNoClick = () => {
+    setNoCount((prev) => prev + 1);
+  };
+
+  const messages = [
+    "CAN YOU BE MY VALENTINES DATE?? 💖",
+    "WAIT… WHAT? 😳",
+    "PLEASE SAY YES 😢",
+    "OKAY NOW YOU'RE BREAKING MY HEART 💔",
+    "THIS IS GETTING PAINFUL 😭",
+    "YOU HAVE NO CHOICE NOW 😈",
+  ];
+
+  const images = [
+    "/marry.jpg",
+    "/waitwhat.jpg",
+    "/please.jpg",
+    "/sad.jpg",
+    "/last.jpg",
+    "/taray.jpg",
+  ];
+
+  const currentIndex = Math.min(noCount, messages.length - 1);
+
   return (
     <div
       style={{
-        position: "relative",
-        minHeight: "100vh",
-        width: "100%",
-        overflow: "hidden",
+        backgroundColor: "#d4a3f9",
+        height: "100vh",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        padding: "2rem",
+        textAlign: "center",
+        fontFamily: "Arial, sans-serif",
       }}
     >
-      {/* Background Image */}
-      <Image
-        src="/qqq.jpg"
-        alt="Background"
-        fill
-        style={{ objectFit: "cover" }}
-        priority
-      />
-
-      {/* Dark Overlay */}
-      <div
+      {/* IMAGE */}
+      <img
+        src={images[currentIndex]}
+        alt="bear"
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.65)",
+          width: "200px",
+          marginBottom: "1.5rem",
+          transition: "all 0.3s ease",
         }}
       />
 
-      {/* BACK BUTTON */}
-      <a
-        href="/"
+      {/* TEXT */}
+      <h1
         style={{
-          position: "absolute",
-          top: "20px",
-          right: "20px",
-          color: "white",
-          fontSize: "1.2rem",
-          fontWeight: "bold",
-          zIndex: 10,
-          padding: "8px 14px",
-          border: "2px solid white",
-          borderRadius: "6px",
-          backdropFilter: "blur(3px)",
-          textDecoration: "none",
+          color: "#d1007d",
+          fontWeight: "900",
+          fontSize: "2.5rem",
+          marginBottom: "2rem",
+          userSelect: "none",
         }}
       >
-        ← Back
-      </a>
+        {messages[currentIndex]}
+      </h1>
 
-      {/* Main Content */}
-      <section
-        style={{
-          position: "relative",
-          zIndex: 2,
-          width: "100%",
-          maxWidth: "900px",
-          color: "white",
-        }}
-      >
-        <h2
+      {/* BUTTONS */}
+      <div style={{ display: "flex", gap: "1.5rem" }}>
+        <button
+          onClick={handleYesClick}
           style={{
-            fontSize: "2.8rem",
-            marginBottom: "2.5rem",
-            textAlign: "center",
-            fontWeight: "800",
-            color: "white", // changed from gradient to white
+            backgroundColor: "#00c853",
+            border: "none",
+            borderRadius: "40px",
+            padding: `${14 + noCount * 4}px ${50 + noCount * 10}px`,
+            fontWeight: "900",
+            fontSize: `${1.2 + noCount * 0.15}rem`,
+            color: "black",
+            cursor: "pointer",
+            transition: "all 0.3s ease",
           }}
         >
-          Education
-        </h2>
+          YES 💖
+        </button>
 
-        {/* College */}
-        <div
-          style={{
-            position: "relative",
-            padding: "2rem",
-            borderRadius: "14px",
-            marginBottom: "2rem",
-            borderLeft: "8px solid #06ed44ff",
-            display: "flex",
-            alignItems: "center",
-            gap: "1.5rem",
-            overflow: "hidden",
-            backdropFilter: "blur(8px)",
-            backgroundColor: "rgba(255,255,255,0.08)",
-            boxShadow: "0 0 20px rgba(6,237,68,0.3)",
-          }}
-        >
-          {/* Background Image */}
-          <div
+        {noCount < 5 && (
+          <button
+            onClick={handleNoClick}
             style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundImage: "url('/ncf.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: 0.3,
-              zIndex: 0,
-            }}
-          />
-
-          {/* Icon */}
-          <div
-            style={{
-              width: "110px",
-              height: "110px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              flexShrink: 0,
-              border: "3px solid #06ed44ff",
-              zIndex: 1,
+              backgroundColor: "#ff1744",
+              border: "none",
+              borderRadius: "30px",
+              padding: "12px 40px",
+              fontWeight: "700",
+              fontSize: "1.1rem",
+              color: "black",
+              cursor: "pointer",
             }}
           >
-            <Image src="/ncf.webp" alt="College Icon" width={110} height={110} />
-          </div>
-
-          {/* Text */}
-          <div style={{ zIndex: 1 }}>
-            <h3 style={{ fontSize: "1.8rem", marginBottom: "0.3rem" }}>
-              Bachelor of Science in Information Technology
-            </h3>
-            <p style={{ fontSize: "1.2rem", margin: 0, opacity: 0.9 }}>
-              Naga College Foundation (NCF)
-            </p>
-            <p style={{ marginTop: "0.5rem", opacity: 0.8 }}>Present</p>
-          </div>
-        </div>
-
-        {/* High School */}
-        <div
-          style={{
-            position: "relative",
-            padding: "2rem",
-            borderRadius: "14px",
-            borderLeft: "8px solid #2900f6ff",
-            display: "flex",
-            alignItems: "center",
-            gap: "1.5rem",
-            overflow: "hidden",
-            backdropFilter: "blur(8px)",
-            backgroundColor: "rgba(255,255,255,0.08)",
-            boxShadow: "0 0 20px rgba(41,0,246,0.3)",
-          }}
-        >
-          {/* Background Image */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundImage: "url('/camhi.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: 0.3,
-              zIndex: 0,
-            }}
-          />
-
-          {/* Icon */}
-          <div
-            style={{
-              width: "110px",
-              height: "110px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              flexShrink: 0,
-              border: "3px solid #2900f6ff",
-              zIndex: 1,
-            }}
-          >
-            <Image src="/camhi.png" alt="High School Icon" width={110} height={110} />
-          </div>
-
-          {/* Text */}
-          <div style={{ zIndex: 1 }}>
-            <h3 style={{ fontSize: "1.8rem", marginBottom: "0.3rem" }}>
-              High School - Senior High School
-            </h3>
-            <p style={{ fontSize: "1.2rem", margin: 0, opacity: 0.9 }}>
-              Camarines Sur National High School (CSNHS)
-            </p>
-            <p style={{ marginTop: "0.5rem", opacity: 0.8 }}>Completed</p>
-          </div>
-        </div>
-      </section>
+            NO 😤
+          </button>
+        )}
+      </div>
     </div>
   );
 }
